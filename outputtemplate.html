@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plagiaatdetectie Rapport</title>
+  </head>
+  <body>
+    <h1>Plagiaatdetectie Rapport</h1>
+    <table border="1">
+      <tr>
+        <th></th>
+        {% for author in matrix %}
+        <th>{{ alias_mapping[author] }}</th>
+        {% endfor %}
+      </tr>
+      {% for author, comparisons in matrix.items() %}
+      <tr>
+        <td>{{ alias_mapping[author] }}</td>
+        {% for other_author, comments in comparisons.items() %}
+        <td>{{ "/".join(comments) if comments else "/" }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
